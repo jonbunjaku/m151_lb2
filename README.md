@@ -29,6 +29,7 @@ Für dieses Projekt verwenden wir eine MVC Architektur. Da aber am Schluss kein 
 
 #### ERM
 ![](m151_erm.png)
+
 In der User Tabelle ist der Vor- und Nachname enthalten.
 In der Grade Tabelle ist eine Note mit dem Fach und dem user enthalten.
 1 User kann mehrere Grades haben.
