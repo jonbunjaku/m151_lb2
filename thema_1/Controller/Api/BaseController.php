@@ -31,6 +31,18 @@ class BaseController
     {
         return parse_str($_SERVER['QUERY_STRING'], $query);
     }
+
+    /**
+     * Get querystring params.
+     *
+     * @return string
+     */
+    protected function getPathParam()
+    {
+        $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        $uri = explode('/', $uri);
+        return $uri[count($uri) - 1];
+    }
  
     /**
      * Send API output.

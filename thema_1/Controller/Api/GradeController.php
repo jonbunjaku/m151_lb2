@@ -1,21 +1,31 @@
 <?php
-class UserController extends BaseController
+
+class GradeController extends BaseController
 {
     /**
-     * "/user" Endpoint - Get list of users
+     * "/grade" Endpoint - Get list of grades
      */
     public function GET()
     {
         $strErrorDesc = '';
+        $requestMethod = $_SERVER["REQUEST_METHOD"];
+        $arrQueryStringParams = $this->getQueryStringParams();
+
+        if (strtoupper($requestMethod) == 'GET') {
             try {
-                $userModel = new UserModel();
-                $arrUsers = $userModel->getUsers();
-                $responseData = json_encode($arrUsers);
+                $gradeModel = new GradeModel();
+
+                $arrGrades = $gradeModel->getGrades();
+                $responseData = json_encode($arrGrades);
             } catch (Error $e) {
                 $strErrorDesc = $e->getMessage().'Something went wrong! Please contact support.';
                 $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
             }
- 
+        } else {
+            $strErrorDesc = 'Method not supported';
+            $strErrorHeader = 'HTTP/1.1 422 Unprocessable Entity';
+        }
+
         // send output
         if (!$strErrorDesc) {
             $this->sendOutput(
@@ -23,25 +33,24 @@ class UserController extends BaseController
                 array('Content-Type: application/json', 'HTTP/1.1 200 OK')
             );
         } else {
-            $this->sendOutput(json_encode(array('error' => $strErrorDesc)), 
+            $this->sendOutput(json_encode(array('error' => $strErrorDesc)),
                 array('Content-Type: application/json', $strErrorHeader)
             );
         }
     }
-
     /**
-     * "/user/{userId}" Endpoint - Delete User by id
+     * "/grade/{gradeId}" Endpoint - Deletes Grade by Id
      */
     public function DELETE()
     {
         $strErrorDesc = '';
-        try {
-            $userModel = new UserModel();
-            $response = json_encode($userModel->deleteUser($this->getPathParam()));
-        } catch (Error $e) {
-            $strErrorDesc = $e->getMessage().'Something went wrong! Please contact support.';
-            $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
-        }
+            try {
+                $gradeModel = new GradeModel();
+                $response = json_encode($gradeModel->deleteGrade($this->getPathParam()));
+            } catch (Error $e) {
+                $strErrorDesc = $e->getMessage().'Something went wrong! Please contact support.';
+                $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
+            }
 
         // send output
         if (!$strErrorDesc) {
@@ -55,10 +64,4 @@ class UserController extends BaseController
             );
         }
     }
-
-    public function POST()
-    {
-
-    }
-
 }
