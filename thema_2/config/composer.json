@@ -1,11 +1,10 @@
 {
   "require": {
     "doctrine/orm": "^2.14",
-    "doctrine/dbal": "^3.2",
-    "symfony/yaml": "^5.4",
-    "symfony/cache": "^5.4"
+    "doctrine/cache": "2.2.0",
+    "symfony/yaml": "^5.4"
   },
   "autoload": {
-    "psr-0": {"": "src/"}
+    "psr-0": {"": "../Model"}
   }
 }
