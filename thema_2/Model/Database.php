@@ -1,12 +1,12 @@
 <?php
-class Database
+/*class Database
 {
     protected $connection = null;
 
     public function __construct()
     {
         try {
-            $this->connection = new mysqli("44.200.146.130", "admin", "password.123", "m151");
+            $this->connection = new mysqli("44.211.235.166", "admin", "password.123", "m151");
 
             if (mysqli_connect_errno()) {
                 throw new Exception("Could not connect to database.");
@@ -63,4 +63,4 @@ class Database
             throw new Exception($e->getMessage());
         }
     }
-}
+}*/

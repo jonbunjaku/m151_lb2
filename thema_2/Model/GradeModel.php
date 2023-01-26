@@ -1,5 +1,5 @@
 <?php
-require_once PROJECT_ROOT_PATH . "/Model/Database.php";
+/*require_once PROJECT_ROOT_PATH . "/Model/Database.php";
 
 class GradeModel extends Database
 {
@@ -16,4 +16,4 @@ class GradeModel extends Database
     }
 
 }
-?>
+*/?>

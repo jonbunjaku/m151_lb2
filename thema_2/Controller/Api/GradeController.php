@@ -1,15 +1,19 @@
 <?php
 
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Entity;
 
 class GradeController extends BaseController
 {
+    private $entityManager;
+    public function __constructor(EntityManager $entityManager) {
+        $this->em = $entityManager;
+    }
     /**
      * "/grade" Endpoint - Get list of grades
      */
     public function GET()
     {
-
     }
     /**
      * "/grade/{gradeId}" Endpoint - Deletes Grade by Id

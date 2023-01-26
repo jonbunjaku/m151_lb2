@@ -1,6 +1,13 @@
 <?php
-class UserController extends BaseController
+
+use Doctrine\ORM\EntityManager;
+
+class UserControllerORM extends BaseController
 {
+    private $entityManager;
+    public function __constructor($entityManager) {
+        $this->entityManager = $entityManager;
+    }
     /**
      * "/user" Endpoint - Get list of users
      */
@@ -8,9 +15,10 @@ class UserController extends BaseController
     {
         $strErrorDesc = '';
             try {
-                $userModel = new UserModel();
+                $users = $this->entityManager->find("User", 1, null, null);
+/*                $userModel = new UserModel();
                 $arrUsers = $userModel->getUsers();
-                $responseData = json_encode($arrUsers);
+                $responseData = json_encode($arrUsers);*/
             } catch (Error $e) {
                 $strErrorDesc = $e->getMessage().'Something went wrong! Please contact support.';
                 $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
@@ -19,7 +27,7 @@ class UserController extends BaseController
         // send output
         if (!$strErrorDesc) {
             $this->sendOutput(
-                $responseData,
+                $users,
                 array('Content-Type: application/json', 'HTTP/1.1 200 OK')
             );
         } else {
@@ -60,8 +68,7 @@ class UserController extends BaseController
     {
         $strErrorDesc = '';
         try {
-            $userModel = new UserModel();
-            $response = json_encode($userModel->insertUser($this->getBody()));
+            $response = json_encode($this->entityManager->persist($this->getBody()));
         } catch (Error $e) {
             $strErrorDesc = $e->getMessage().'Something went wrong! Please contact support.';
             $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';

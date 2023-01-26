@@ -1,5 +1,5 @@
 <?php
-require_once PROJECT_ROOT_PATH . "/Model/Database.php";
+/*require_once PROJECT_ROOT_PATH . "/Model/Database.php";
  
 class UserModel extends Database
 {
@@ -20,4 +20,4 @@ class UserModel extends Database
     {
         return $this->modify("INSERT INTO user (name, lastName) VALUES (?, ?)", "ss", [$body->name, $body->lastName]);
     }
-}
+}*/

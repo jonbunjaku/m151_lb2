@@ -2,16 +2,21 @@
 
 declare(strict_types=1);
 
+use Cassandra\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 
 #[Entity]
 #[Table('grade')]
 class Grade
 {
-    #[\Doctrine\ORM\Mapping\Id]
+    #[Id]
     #[Column, GeneratedValue]
     private int $id;
 

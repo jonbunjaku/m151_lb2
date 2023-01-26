@@ -1,9 +1,9 @@
 <?php
 require __DIR__ . "/inc/bootstrap.php";
-require PROJECT_ROOT_PATH . "/Controller/Api/UserController.php";
+require PROJECT_ROOT_PATH . "/Controller/Api/UserControllerORM.php";
 require PROJECT_ROOT_PATH . "/Controller/Api/GradeController.php";
 const ENDPOINTS = [
-    'user' => new UserController(),
+    'user' => new UserControllerORM(),
     'grade' => new GradeController()
 ];
 

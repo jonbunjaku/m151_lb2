@@ -1,11 +1,13 @@
 <?php
 require __DIR__ . "/inc/bootstrap.php";
-require PROJECT_ROOT_PATH . "/Controller/Api/UserController.php";
+require __DIR__ . "/Model/orm_example.php";
+require PROJECT_ROOT_PATH . "/Controller/Api/UserControllerORM.php";
 require PROJECT_ROOT_PATH . "/Controller/Api/GradeController.php";
-const ENDPOINTS = [
-    'user' => new UserController(),
-    'grade' => new GradeController()
-];
+
+define("ENDPOINTS", [
+    'user' => new UserControllerORM($entityManager),
+    'grade' => new GradeController($entityManager)
+]);
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $uri = explode( '/', $uri );
