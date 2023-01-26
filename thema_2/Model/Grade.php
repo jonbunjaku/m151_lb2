@@ -29,9 +29,6 @@ class Grade
     #[Column]
     private int $fk_user;
 
-    #[ManyToOne(inversedBy: 'grades')]
-    private User $user;
-
     /**
      * @return User
      */

@@ -25,14 +25,6 @@ class User
     #[Column]
     private string $lastName;
 
-    #[OneToMany(mappedBy: 'user', targetEntity: Grade::class)]
-    private Collection $grades;
-
-    public function __construct()
-    {
-        $this->grades = new ArrayCollection();
-    }
-
     /**
      * @return string
      */

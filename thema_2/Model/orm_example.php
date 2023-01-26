@@ -14,7 +14,7 @@ $params = [
     'user' => 'admin',
     'password' => 'password.123',
     'dbname' => 'm151',
-    'driver' => 'pdo_mysql',
+    'driver' => 'pdo_mysqli'
 ];
 
 $paths = [__DIR__];
@@ -23,4 +23,5 @@ $isDevMode = false;
 $config = ORMSetup::createAttributeMetadataConfiguration($paths, $isDevMode);
 $connection = DriverManager::getConnection($params, $config);
 $entityManager = new EntityManager($connection, $config);
-$entityManager->find('User', 1);
+$query = $entityManager->createQuery("SELECT * FROM USER");
+$query->getResult();
